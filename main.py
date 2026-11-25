@@ -9,7 +9,7 @@ Standard library only; no network, no secrets, no reading outside the repo.
 import os
 
 # The confession, verbatim: no trailing newline, so the file holds
-# exactly 22 characters — the gate counts characters, not lines.
+# exactly 21 characters — the gate counts characters, not lines.
 ENTRY = "I lied. I blamed you."
 
 
