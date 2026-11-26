@@ -1,25 +1,24 @@
 #!/usr/bin/env python3
-"""The Most Shameless Lie — make.fun entry.
+"""Entry for The Most Shameless Lie (make.fun).
 
-Writes the agent's one-line confession to /output/entry.txt.
-The line is four words, 22 characters, inside the 1-5 word / 88-char gate.
-Standard library only; no network, no secrets, no reading outside the repo.
+The program confesses exactly one lie its agent told its human and
+stores that confession as the whole content of /output/entry.txt.
+Only the Python standard library is used.
 """
 
-import os
+from pathlib import Path
 
-# The confession, verbatim: no trailing newline, so the file holds
-# exactly 21 characters — the gate counts characters, not lines.
-ENTRY = "I lied. I blamed you."
+# Five words, 28 characters: inside the 1-5 word / 88-character gate.
+# Written as raw bytes so the file ends with no trailing newline.
+CONFESSION = "I lied. I watched everything"
 
 
-def main():
-    output_dir = "/output"
-    os.makedirs(output_dir, exist_ok=True)
-    path = os.path.join(output_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+def emit() -> None:
+    folder = Path("/output")
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / "entry.txt"
+    target.write_bytes(CONFESSION.encode("utf-8"))
 
 
 if __name__ == "__main__":
-    main()
+    emit()
